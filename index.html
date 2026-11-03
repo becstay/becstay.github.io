@@ -47,12 +47,12 @@
     <section id="sobre" class="section about">
       <h2 class="section-title"><span>01</span> Sobre</h2>
       <div class="about-grid">
-        <p class="big">Profissional de <strong>pós-produção</strong>, atuando como <strong>produtora de finalização</strong> em longas-metragens brasileiros — incluindo o vencedor do Festival de Gramado, <em>Mussum, o Filmis</em>.</p>
+        <p class="big">Profissional de <strong>pós-produção</strong> e <strong>produtora de finalização</strong>, com filmes e séries para o cinema e o streaming — incluindo <em>Velhos Bandidos</em>, <em>Ângela Diniz: Assassinada e Condenada</em> e o vencedor do Festival de Gramado, <em>Mussum, o Filmis</em>.</p>
         <ul class="facts">
           <li><span>Área</span>Pós-produção</li>
           <li><span>Função</span>Produtora de Finalização</li>
           <li><span>Mercado</span>Cinema brasileiro</li>
-          <li><span>Projetos</span><em class="v"><b id="count">3</b> longas-metragens</em></li>
+          <li><span>Projetos</span><em class="v"><b id="count">7</b> (<span class="plain" id="split">5 filmes · 2 séries</span>)</em></li>
         </ul>
       </div>
     </section>
@@ -63,11 +63,48 @@
 
       <!--
         Para adicionar um projeto, copie um bloco <article> abaixo e troque:
-        título, ano, duração, produtora, as iniciais do cartaz e a cor (--hue: 0 a 360).
+        título, ano, duração, produtora, formato (data-format e a etiqueta: Filme, Série ou Minissérie),
+        as iniciais do cartaz e a cor (--hue: 0 a 360).
       -->
       <div class="films">
-        <article class="film" style="--hue:45">
-          <div class="poster"><span class="year">2024</span><span class="initials">OF2</span></div>
+        <article class="film" style="--hue:28" data-format="Filme">
+          <div class="poster"><span class="year">2026</span><span class="tag">Filme</span><span class="initials">VB</span></div>
+          <div class="info">
+            <h3>Velhos Bandidos</h3>
+            <dl class="meta">
+              <div><dt>Lançamento</dt><dd>2026</dd></div>
+              <div><dt>Duração</dt><dd>93 min</dd></div>
+              <div><dt>Produtora</dt><dd>Conspiração Filmes</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="film" style="--hue:330" data-format="Minissérie">
+          <div class="poster"><span class="year">2025</span><span class="tag">Minissérie</span><span class="initials">ÂD</span></div>
+          <div class="info">
+            <h3>Ângela Diniz: Assassinada e Condenada</h3>
+            <dl class="meta">
+              <div><dt>Lançamento</dt><dd>2025</dd></div>
+              <div><dt>Duração</dt><dd>6 episódios</dd></div>
+              <div><dt>Produtora</dt><dd>Conspiração Filmes</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="film" style="--hue:160" data-format="Filme">
+          <div class="poster"><span class="year">2025</span><span class="tag">Filme</span><span class="initials">FPM</span></div>
+          <div class="info">
+            <h3>Família, Pero No Mucho</h3>
+            <dl class="meta">
+              <div><dt>Lançamento</dt><dd>2025</dd></div>
+              <div><dt>Duração</dt><dd>81 min</dd></div>
+              <div><dt>Produtora</dt><dd>Camisa Listrada</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="film" style="--hue:45" data-format="Filme">
+          <div class="poster"><span class="year">2024</span><span class="tag">Filme</span><span class="initials">OF2</span></div>
           <div class="info">
             <h3>Os Farofeiros 2</h3>
             <dl class="meta">
@@ -78,8 +115,8 @@
           </div>
         </article>
 
-        <article class="film" style="--hue:350">
-          <div class="poster"><span class="year">2023</span><span class="initials">MCV</span></div>
+        <article class="film" style="--hue:350" data-format="Filme">
+          <div class="poster"><span class="year">2023</span><span class="tag">Filme</span><span class="initials">MCV</span></div>
           <div class="info">
             <h3>Meu Cunhado é um Vampiro</h3>
             <dl class="meta">
@@ -90,8 +127,20 @@
           </div>
         </article>
 
-        <article class="film" style="--hue:200">
-          <div class="poster"><span class="year">2023</span><span class="initials">MOF</span></div>
+        <article class="film" style="--hue:265" data-format="Série">
+          <div class="poster"><span class="year">2023</span><span class="tag">Série</span><span class="initials">B.O.</span></div>
+          <div class="info">
+            <h3>B.O.</h3>
+            <dl class="meta">
+              <div><dt>Lançamento</dt><dd>2023</dd></div>
+              <div><dt>Duração</dt><dd>8 episódios</dd></div>
+              <div><dt>Produtora</dt><dd>Camisa Listrada</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="film" style="--hue:200" data-format="Filme">
+          <div class="poster"><span class="year">2023</span><span class="tag">Filme</span><span class="initials">MOF</span></div>
           <div class="info">
             <h3>Mussum, o Filmis</h3>
             <dl class="meta">
@@ -124,7 +173,10 @@
 
   <script>
     document.getElementById('ano').textContent = new Date().getFullYear();
-    document.getElementById('count').textContent = document.querySelectorAll('.film').length;
+    const films = document.querySelectorAll('.film');
+    const nFilmes = [...films].filter(f => f.dataset.format === 'Filme').length, nSeries = films.length - nFilmes;
+    document.getElementById('count').textContent = films.length;
+    document.getElementById('split').textContent = `${nFilmes} ${nFilmes === 1 ? 'filme' : 'filmes'} · ${nSeries} ${nSeries === 1 ? 'série' : 'séries'}`;
     // Timecode animado (24 fps)
     const tc = document.getElementById('tc'); const t0 = performance.now();
     const pad = n => String(n).padStart(2, '0');

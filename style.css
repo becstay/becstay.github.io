@@ -187,3 +187,10 @@ h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
 .meta div { display: flex; justify-content: space-between; gap: 12px; font-size: .92rem; }
 .meta dt { font-family: var(--mono); font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; padding-top: 2px; }
 .meta dd { text-align: right; }
+.facts .plain { all: unset; }
+.tag {
+  position: absolute; top: 14px; right: 32px;
+  font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em;
+  background: rgba(0,0,0,.5); padding: 4px 10px; border-radius: 999px; color: var(--muted);
+}
+.film:nth-child(n+4) { transition-delay: .1s; }
