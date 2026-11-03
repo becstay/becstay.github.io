@@ -1,6 +1,6 @@
-/* Editorial claro: um projeto por faixa, trailer alternando de lado */
+/* Editorial claro: um projeto por faixa, trailer alternando de lado. Fonte: Plus Jakarta Sans */
 :root {
-  --paper: #f8f2ef;      /* fundo claro, puxado para o rosado */
+  --paper: #f4f2ee;      /* fundo claro, off-white quente */
   --paper-2: #f0e6e3;    /* faixas e blocos */
   --ink: #574141;        /* texto e títulos */
   --ink-soft: #7a6261;   /* texto secundário */
@@ -8,8 +8,8 @@
   --coral: #e77577;      /* destaque */
   --olive: #8e9f45;      /* detalhe */
   --moss: #596c10;       /* função e links */
-  --display: "Bodoni Moda", "Didot", Georgia, serif;
-  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --body: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   color-scheme: light;
 }
@@ -38,7 +38,7 @@ ul { list-style: none; }
 /* Topo */
 .top {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(248, 242, 239, .9);
+  background: rgba(244, 242, 238, .92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--dust);
 }
@@ -47,8 +47,8 @@ ul { list-style: none; }
   gap: 12px 24px; padding-block: 16px;
 }
 .brand { display: grid; gap: 2px; text-decoration: none; }
-.name { font-family: var(--display); font-weight: 500; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.1; }
-.name em { color: var(--coral); }
+.name { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.1; }
+.name em { color: var(--coral); font-style: normal; }
 .kicker {
   font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft);
 }
@@ -70,14 +70,10 @@ ul { list-style: none; }
   padding-block: clamp(36px, 7vw, 72px) clamp(28px, 5vw, 48px);
 }
 .lead {
-  font-family: var(--display); font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.35;
+  font-family: var(--display); font-weight: 500; letter-spacing: -.01em; font-size: clamp(1.2rem, 2.3vw, 1.6rem); line-height: 1.4;
   max-width: 34em; text-wrap: balance;
 }
-.lead strong { font-weight: 600; color: var(--moss); }
-.stats { display: flex; gap: clamp(20px, 3vw, 36px); }
-.stats li { display: grid; }
-.stats b { font-family: var(--display); font-weight: 500; font-size: 2.4rem; line-height: 1; color: var(--coral); }
-.stats span { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.lead strong { font-weight: 700; color: var(--moss); }
 @media (max-width: 720px) { .intro { grid-template-columns: 1fr; } }
 
 /* Projetos */
@@ -88,12 +84,12 @@ ul { list-style: none; }
   padding-block: clamp(32px, 5vw, 56px);
   border-top: 1px solid var(--dust);
 }
-.project:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
-.project:nth-child(even) .trailer { order: 2; }
+.project:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.project:nth-of-type(even) .trailer { order: 2; }
 .info { display: grid; gap: 12px; min-width: 0; }
 .num { font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; color: var(--ink-soft); }
 .title {
-  font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-family: var(--display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.5rem, 2.8vw, 2.2rem);
   line-height: 1.12; text-wrap: balance;
 }
 .role { color: var(--moss); font-weight: 600; font-size: .95rem; }
@@ -142,14 +138,14 @@ ul { list-style: none; }
 .yt:hover { color: var(--moss); text-decoration: underline; }
 
 @media (max-width: 760px) {
-  .project, .project:nth-child(even) { grid-template-columns: 1fr; }
-  .project:nth-child(even) .trailer { order: 0; }
+  .project, .project:nth-of-type(even) { grid-template-columns: 1fr; }
+  .project:nth-of-type(even) .trailer { order: 0; }
 }
 
 /* Contato */
 .contact { background: var(--ink); color: var(--paper); margin-top: clamp(24px, 4vw, 40px); }
 .contact-inner { display: grid; gap: 16px; justify-items: start; padding-block: clamp(48px, 8vw, 88px); }
-.sec { font-family: var(--display); font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.1; }
+.sec { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.1; }
 .mail { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--dust); text-underline-offset: 4px; overflow-wrap: anywhere; }
 .mail:hover { color: var(--coral); }
 .contact .btn { border-color: var(--dust); color: var(--paper); background: transparent; }
@@ -168,4 +164,15 @@ ul { list-style: none; }
 
 /* Detalhe em oliva */
 .num::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--olive); margin-right: 8px; vertical-align: 1px; }
-.stats li { padding-left: 14px; border-left: 2px solid var(--olive); }
+
+/* Indicação de portfólio */
+.kicker { display: flex; align-items: center; gap: 8px; }
+.kicker mark { background: var(--moss); color: var(--paper); padding: 1px 8px; border-radius: 999px; letter-spacing: .12em; }
+.port-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--dust);
+}
+.port-head h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.1; }
+.port-head p { font-family: var(--mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.port-head + .project { border-top: 0; }
+.intro { grid-template-columns: 1fr; padding-bottom: clamp(24px, 4vw, 40px); }
