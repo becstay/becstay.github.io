@@ -1,4 +1,5 @@
-/* Editorial claro: um projeto por faixa, trailer alternando de lado. Fonte: Plus Jakarta Sans */
+/* Editorial: um projeto por faixa, trailer alternando de lado. Fonte: Plus Jakarta Sans
+   Modo claro e escuro: segue o sistema de quem acessa; o botão no topo troca e lembra a escolha. */
 :root {
   --paper: #f4f2ee;      /* fundo claro, off-white quente */
   --paper-2: #f0e6e3;    /* faixas e blocos */
@@ -7,17 +8,42 @@
   --dust: #bfa5a4;       /* linhas e detalhes */
   --coral: #e77577;      /* destaque */
   --olive: #8e9f45;      /* detalhe */
-  --moss: #596c10;       /* função e links */
+  --moss: #596c10;       /* texto de destaque: função, produtoras */
+  --pill-bg: #596c10;    /* etiquetas verdes */
+  --pill-fg: #f4f2ee;
+  --top-bg: rgba(244, 242, 238, .92);
+  --band-bg: #574141;    /* faixa de contato */
+  --band-fg: #f4f2ee;
+  --band-soft: #bfa5a4;
+  --frame-bg: #574141;   /* fundo do trailer antes da capa carregar */
+  --shadow: rgba(87, 65, 65, .55);
   --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --body: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   color-scheme: light;
 }
 
+/* Modo escuro: mesma paleta, com fundo marrom bem escuro e texto claro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1e1717; --paper-2: #2a2020; --ink: #f1e9e6; --ink-soft: #c7b0af; --dust: #4e3e3e;
+    --moss: #b6c76c; --pill-bg: #596c10; --pill-fg: #f4f2ee; --top-bg: rgba(30, 23, 23, .9);
+    --band-bg: #2e2323; --band-fg: #f4f2ee; --band-soft: #d4bebd; --frame-bg: #3a2d2d; --shadow: rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1e1717; --paper-2: #2a2020; --ink: #f1e9e6; --ink-soft: #c7b0af; --dust: #4e3e3e;
+  --moss: #b6c76c; --pill-bg: #596c10; --pill-fg: #f4f2ee; --top-bg: rgba(30, 23, 23, .9);
+  --band-bg: #2e2323; --band-fg: #f4f2ee; --band-soft: #d4bebd; --frame-bg: #3a2d2d; --shadow: rgba(0, 0, 0, .6);
+  color-scheme: dark;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--paper);
+  transition: background-color .3s, color .3s;
   color: var(--ink);
   font-family: var(--body);
   font-size: 16px;
@@ -38,7 +64,7 @@ ul { list-style: none; }
 /* Topo */
 .top {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(244, 242, 238, .92);
+  background: var(--top-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--dust);
 }
@@ -94,7 +120,7 @@ ul { list-style: none; }
 }
 .role { color: var(--moss); font-weight: 600; font-size: .95rem; }
 .role.lead-role {
-  justify-self: start; color: var(--paper); background: var(--moss);
+  justify-self: start; color: var(--pill-fg); background: var(--pill-bg);
   padding: 3px 12px; border-radius: 999px; font-size: .85rem;
 }
 .meta { display: grid; margin-top: 4px; font-size: .95rem; font-variant-numeric: tabular-nums; }
@@ -106,13 +132,13 @@ ul { list-style: none; }
 .trailer { display: grid; gap: 8px; min-width: 0; }
 .frame {
   position: relative; aspect-ratio: 16 / 9; width: 100%; max-width: 100%;
-  border-radius: 10px; overflow: hidden; background: var(--ink);
-  box-shadow: 0 18px 40px -22px rgba(87, 65, 65, .55);
+  border-radius: 10px; overflow: hidden; background: var(--frame-bg);
+  box-shadow: 0 18px 40px -22px var(--shadow);
 }
 .frame.soon {
-  display: grid; place-items: center; color: var(--paper);
+  display: grid; place-items: center; color: #f4f2ee;
   font-family: var(--mono); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
-  background: linear-gradient(135deg, var(--ink), #6e4f4f);
+  background: linear-gradient(135deg, #574141, #6e4f4f);
 }
 .facade { all: unset; position: absolute; inset: 0; cursor: pointer; display: grid; place-items: center; }
 .facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s, filter .3s; }
@@ -143,13 +169,13 @@ ul { list-style: none; }
 }
 
 /* Contato */
-.contact { background: var(--ink); color: var(--paper); margin-top: clamp(24px, 4vw, 40px); }
+.contact { background: var(--band-bg); color: var(--band-fg); margin-top: clamp(24px, 4vw, 40px); }
 .contact-inner { display: grid; gap: 16px; justify-items: start; padding-block: clamp(48px, 8vw, 88px); }
 .sec { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.1; }
-.mail { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--dust); text-underline-offset: 4px; overflow-wrap: anywhere; }
+.mail { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--band-soft); text-underline-offset: 4px; overflow-wrap: anywhere; }
 .mail:hover { color: var(--coral); }
-.contact .btn { border-color: var(--dust); color: var(--paper); background: transparent; }
-.contact .btn:hover, .contact .links .btn:first-child:hover { background: var(--coral); border-color: var(--coral); color: var(--ink); }
+.contact .btn { border-color: var(--band-soft); color: var(--band-fg); background: transparent; }
+.contact .btn:hover, .contact .links .btn:first-child:hover { background: var(--coral); border-color: var(--coral); color: #3a2a2a; }
 .contact .links .btn:first-child { background: transparent; }
 
 .foot {
@@ -167,7 +193,7 @@ ul { list-style: none; }
 
 /* Indicação de portfólio */
 .kicker { display: flex; align-items: center; gap: 8px; }
-.kicker mark { background: var(--moss); color: var(--paper); padding: 1px 8px; border-radius: 999px; letter-spacing: .12em; }
+.kicker mark { background: var(--pill-bg); color: var(--pill-fg); padding: 1px 8px; border-radius: 999px; letter-spacing: .12em; }
 .port-head {
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px;
   padding-bottom: 12px; border-bottom: 1px solid var(--dust);
@@ -176,3 +202,15 @@ ul { list-style: none; }
 .port-head p { font-family: var(--mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
 .port-head + .project { border-top: 0; }
 .intro { grid-template-columns: 1fr; padding-bottom: clamp(24px, 4vw, 40px); }
+
+/* Botão de modo claro / escuro */
+.theme-toggle {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.theme-toggle:hover { background: var(--ink); color: var(--paper); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .sun { display: none; }
+:root[data-mode="dark"] .theme-toggle .sun { display: block; }
+:root[data-mode="dark"] .theme-toggle .moon { display: none; }
